@@ -6,4 +6,18 @@ Library used in this script are:
 * boto3
 * minio
 
-!Please give a star/follow me if you would like to give an appreciation!
+`pip install pyarrow`
+
+`pip install fastparquet`
+
+`pip install boto3`
+
+`pip install minio`
+
+## REMEMBER TO INSTALL MINIO AND ADD THE ENVIRONMENT VARIABLE IN PATH
+download minio (.exe if windows) and add minio directory to environment variable.
+check by using `minio --version` in command line. if there are any errors, please check you client credentials and url/port.
+
+Please give a star/follow me if you would like to give an appreciation.
+
+Contact me via [Whatsapp](https://wa.me/6282232768744) for support.
