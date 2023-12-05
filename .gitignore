@@ -2,3 +2,4 @@
 
 # Ignore these oversized CSV
 /data
+/machinelearning/test_results
