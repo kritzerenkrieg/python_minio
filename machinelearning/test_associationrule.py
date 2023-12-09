@@ -75,16 +75,16 @@ def hot_encode(x):
         return 1
   
 # Encoding the datasets 
-basket_encoded = basket_France.applymap(hot_encode) 
+basket_encoded = basket_France.map(hot_encode) 
 basket_France = basket_encoded 
   
-basket_encoded = basket_UK.applymap(hot_encode) 
+basket_encoded = basket_UK.map(hot_encode) 
 basket_UK = basket_encoded 
   
-basket_encoded = basket_Por.applymap(hot_encode) 
+basket_encoded = basket_Por.map(hot_encode) 
 basket_Por = basket_encoded 
   
-basket_encoded = basket_Sweden.applymap(hot_encode) 
+basket_encoded = basket_Sweden.map(hot_encode) 
 basket_Sweden = basket_encoded
 
 # Building the models and analyzing the results
