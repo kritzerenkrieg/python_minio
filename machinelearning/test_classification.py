@@ -77,17 +77,18 @@ print("\nClassification Report:\n", classification_report(y_test, y_pred))
 cm = confusion_matrix(y_test, y_pred)
 
 # Plot Confusion Matrix and other results
-plt.figure(figsize=(12, 8))
+
+plt.figure(figsize=(12,4))
 
 # Plot Confusion Matrix
-plt.subplot(2, 2, 2)
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", cbar=False)
+plt.subplot(1, 2, 2)
+sns.heatmap(cm[:, :1], annot=True, fmt="d", cmap="Blues", cbar=False)
 plt.title("Confusion Matrix")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 
 # Plot Classification Report
-plt.subplot(2, 2, 1)
+plt.subplot(1, 2, 1)
 plt.text(0, 0.5, classification_report(y_test, y_pred, zero_division=1), {'fontsize': 10}, fontfamily='monospace')
 plt.axis('off')
 plt.title('Classification Report')
@@ -95,8 +96,13 @@ plt.title('Classification Report')
 # Specifying the directory of result
 results_directory = './test_results'
 
+# Creating the directory if it doesn't exist
+if not os.path.exists(results_directory):
+    os.makedirs(results_directory)
+    print(f"Directory '{results_directory}' created!")
+
 # Save the plot as an image
-results_image_path = os.path.join(results_directory, 'results_plot.png')
+results_image_path = os.path.join(results_directory, 'classifications.png')
 plt.tight_layout()  # Adjust layout to prevent overlap
 plt.savefig(results_image_path)
 
@@ -104,8 +110,3 @@ plt.savefig(results_image_path)
 plt.show()
 
 print(f"Results saved as an image: {results_image_path}")
-
-# Creating the directory if it doesn't exist
-if not os.path.exists(results_directory):
-    os.makedirs(results_directory)
-    print(f"Directory '{results_directory}' created!")
