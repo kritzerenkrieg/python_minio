@@ -6,40 +6,32 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-import boto3
+import io
 from botocore.exceptions import NoCredentialsError
 from minio import Minio
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set your MinIO server credentials
-minio_endpoint = "http://localhost:9000"
-minio_access_key = "minioadmin"
-minio_secret_key = "minioadmin"
-minio_bucket_name = "parquets"
-minio_file_name = "heart_attack_prediction_dataset.csv.parquet"
+# Initialize the Minio client
+minio_client = Minio("localhost:9000",
+                     access_key="minioadmin",
+                     secret_key="minioadmin",
+                     secure=False)  # Change to True if using HTTPS
 
-# Download the Parquet file from MinIO
-def download_file_from_minio():
-    try:
-        s3 = boto3.client(
-            "s3",
-            endpoint_url=minio_endpoint,
-            aws_access_key_id=minio_access_key,
-            aws_secret_access_key=minio_secret_key,
-        )
+# Specify the bucket and file information
+bucket_name = "parquets"
+file_name = "heart_attack_prediction_dataset.csv.parquet"
 
-        with open(minio_file_name, "wb") as f:
-            s3.download_fileobj(minio_bucket_name, minio_file_name, f)
+# Get the Parquet file as an object and read it
+obj = minio_client.get_object(bucket_name, file_name)
+parquet_content = obj.read()
 
-    except NoCredentialsError:
-        print("Credentials not available")
-
-# Download the file
-download_file_from_minio()
+# Assuming 'parquet_content' contains the raw Parquet data as bytes
+# Read Parquet data using BytesIO
+parquet_stream = io.BytesIO(parquet_content)
 
 # Read the Parquet file into a Pandas DataFrame
-table = pq.read_table(minio_file_name)
+table = pq.read_table(parquet_stream)
 df = table.to_pandas()
 df
 
