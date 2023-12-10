@@ -3,11 +3,9 @@ import pandas as pd
 import pyarrow.parquet as pq
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import io
-from botocore.exceptions import NoCredentialsError
 from minio import Minio
 import matplotlib.pyplot as plt
 import seaborn as sns

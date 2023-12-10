@@ -1,7 +1,6 @@
 import io
 import pandas as pd
 from minio import Minio
-from minio.error import S3Error
 
 # Set your Minio server information
 minio_url = "localhost:9000"

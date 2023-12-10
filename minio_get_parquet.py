@@ -4,23 +4,12 @@ import pandas as pd
 import os
 
 # Set your Minio credentials and endpoint
-minio_credentials = {
-    'region': 'us-east-1',
-    'endpoint': 'http://10.183.16.169:9000',
-    'use_ssl': False,
-    'url_style': 'path',
-    'access_key': 'readonly',
-    'secret_key': 'readonly'
-}
-
-# Create an S3 client
 s3 = boto3.client(
     's3',
-    region_name=minio_credentials['region'],
-    endpoint_url=minio_credentials['endpoint'],
-    aws_access_key_id=minio_credentials['access_key'],
-    aws_secret_access_key=minio_credentials['secret_key'],
-    use_ssl=minio_credentials['use_ssl'],
+    endpoint_url='http://10.183.16.169:9000',
+    use_ssl=False,
+    aws_access_key_id='readonly',
+    aws_secret_access_key='readonly',
     config=boto3.session.Config(signature_version='s3v4')
 )
 
