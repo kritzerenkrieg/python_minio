@@ -1,4 +1,4 @@
-Credits to Fahrul Ramadhan Putra, Hilmi Gema, and Ilham Abdul for contributing this repo
+Credits to F Putra, H Gema, and I Aziz for contributing this repo
 # python_minio tools
 This repository gives a reference on how to use S3 Protocol, Parquetting, and Minio buckets in Python.
 Multiple library are used in this script, so check the imports and use `pip install [insert_library_name]`
